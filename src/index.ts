@@ -11,7 +11,6 @@ export async function start(): Promise<void> {
     console.error("[NoReplyMention] Failed to find module, cannot continue!");
     return;
   }
-  console.log(mod);
 
   const fnName = Object.entries(mod).find(([_, v]) =>
     v.toString()?.match(/CREATE_PENDING_REPLY/),
