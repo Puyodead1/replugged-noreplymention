@@ -18,7 +18,7 @@ export async function start(): Promise<void> {
     v.toString()?.match(/CREATE_PENDING_REPLY/),
   )?.[0];
   if (!fnName) {
-    logger.error("Failed to find function, cannot continue!");
+    logger.error("Failed to find function name, cannot continue!");
     return;
   }
 
