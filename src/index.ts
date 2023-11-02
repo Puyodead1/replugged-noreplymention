@@ -6,7 +6,7 @@ const inject = new Injector();
 export async function start(): Promise<void> {
   const logger = Logger.plugin("NoReplyMention");
 
-  const injectionMod = await webpack.waitForModule<{ [key: string]: AnyFunction }>(
+  const injectionMod = await webpack.waitForModule<Record<string, AnyFunction> | undefined>(
     webpack.filters.byProps("createPendingReply"),
   );
   if (!injectionMod) {
