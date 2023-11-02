@@ -7,16 +7,14 @@ export async function start(): Promise<void> {
   const logger = Logger.plugin("NoReplyMention");
 
   const injectionMod = await webpack.waitForModule<{ [key: string]: AnyFunction }>(
-    webpack.filters.bySource(/\w+=\w+\.shouldMention,\w+=\w+\.showMentionToggle/),
+    webpack.filters.byProps("createPendingReply")
   );
   if (!injectionMod) {
     logger.error("Failed to find module, cannot continue!");
     return;
   }
 
-  const fnName = Object.entries(injectionMod).find(([_, v]) =>
-    v.toString()?.match(/CREATE_PENDING_REPLY/),
-  )?.[0];
+  const fnName = webpack.getFunctionKeyBySource(injectionMod, /CREATE_PENDING_REPLY/)
   if (!fnName) {
     logger.error("Failed to find function name, cannot continue!");
     return;

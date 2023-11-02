@@ -1,13 +1,13 @@
 {
   "id": "me.puyodead1.NoReplyMention",
   "name": "NoReplyMention",
-  "description": "Disables the reply mention",
+  "description": "Disables the reply mention by default",
   "author": {
     "name": "Puyodead1",
     "discordID": "498989696412549120",
     "github": "Puyodead1"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "updater": {
     "type": "store",
     "id": "me.puyodead1.NoReplyMention"
