@@ -7,7 +7,7 @@ export async function start(): Promise<void> {
   const logger = Logger.plugin("NoReplyMention");
 
   const injectionMod = await webpack.waitForModule<Record<string, AnyFunction> | undefined>(
-    webpack.filters.byProps("createPendingReply"),
+    webpack.filters.bySource('type:"CREATE_PENDING_REPLY"'),
   );
   if (!injectionMod) {
     logger.error("Failed to find module, cannot continue!");
@@ -22,7 +22,7 @@ export async function start(): Promise<void> {
 
   inject.before(injectionMod, fnName, ([args], _) => {
     args.shouldMention = false;
-    return args;
+    return [args];
   });
 }
 
