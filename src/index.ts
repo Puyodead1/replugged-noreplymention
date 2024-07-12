@@ -21,7 +21,6 @@ export async function start(): Promise<void> {
   }
 
   inject.before(injectionMod, fnName, ([args], _) => {
-    console.log(args);
     args.shouldMention = false;
     return [args];
   });
